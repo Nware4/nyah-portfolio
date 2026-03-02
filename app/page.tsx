@@ -4,7 +4,6 @@ const P  = "#e4036c";
 const FG = "#f0ede8";
 const M  = "rgba(240,237,232,0.55)";
 const B  = "rgba(240,237,232,0.08)";
-const BG = "#0a0a0a";
 
 const tiles = [
   { label: "About",       sub: "Background & vision",      href: "/about" },
