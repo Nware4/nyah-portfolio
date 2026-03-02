@@ -1,101 +1,123 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const P  = "#e4036c";
+const FG = "#f0ede8";
+const M  = "rgba(240,237,232,0.55)";
+const B  = "rgba(240,237,232,0.08)";
+const BG = "#0a0a0a";
+
+const tiles = [
+  { label: "About",       sub: "Background & vision",      href: "/about" },
+  { label: "Operations",  sub: "Projects & strategy work", href: "/operations" },
+  { label: "Photography", sub: "Visual storytelling",      href: "/photography" },
+  { label: "Tutoring",    sub: "Communication & writing",  href: "/tutoring" },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div style={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <style>{`
+        .nav-tile {
+          background: #0a0a0a;
+          padding: 1.75rem;
+          border-top: 2px solid transparent;
+          transition: border-color 0.2s, background 0.2s;
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+        .nav-tile:hover {
+          border-color: #e4036c;
+          background: #0f0f0f;
+        }
+      `}</style>
+
+      {/* Hero */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 340px",
+        gap: "4rem",
+        alignItems: "center",
+        marginBottom: "5rem",
+      }}>
+        <div>
+          <p style={{
+            fontSize: "0.58rem", letterSpacing: "0.24em", textTransform: "uppercase",
+            color: P, marginBottom: "1.4rem",
+          }}>
+            Bioengineering × Operations × Creative
+          </p>
+          <h1 style={{
+            fontSize: "clamp(3rem, 7vw, 6rem)", fontWeight: 900,
+            letterSpacing: "-0.03em", lineHeight: 0.92,
+            color: FG, marginBottom: "1.75rem",
+          }}>
+            Creative<br />
+            <span style={{ color: P }}>Vision.</span><br />
+            Bold<br />
+            Execution.
+          </h1>
+          <p style={{
+            fontSize: "0.88rem", lineHeight: 1.85, color: M,
+            fontWeight: 300, maxWidth: 460, marginBottom: "2.5rem",
+          }}>
+            Stanford Bioengineering graduate. I work at the intersection of science,
+            strategy, and storytelling — through operations consulting, photography,
+            and communication tutoring.
+          </p>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <Link href="/operations" style={{
+              display: "inline-flex", alignItems: "center", gap: "0.5rem",
+              fontSize: "0.82rem", fontWeight: 500, padding: "0.82rem 1.8rem",
+              background: P, color: "#fff", border: `2px solid ${P}`,
+            }}>
+              View My Work →
+            </Link>
+            <Link href="/contact" style={{
+              display: "inline-flex", alignItems: "center",
+              fontSize: "0.82rem", fontWeight: 500, padding: "0.82rem 1.8rem",
+              background: "transparent", color: M, border: `2px solid ${B}`,
+            }}>
+              Get in Touch
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Photo placeholder */}
+        <div style={{
+          aspectRatio: "4/5",
+          background: "#111",
+          border: `1px solid ${B}`,
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center", gap: "0.75rem",
+          }}>
+            <span style={{ fontSize: "2rem", color: "rgba(240,237,232,0.07)" }}>+</span>
+            <span style={{
+              fontSize: "0.52rem", letterSpacing: "0.22em",
+              textTransform: "uppercase", color: "rgba(240,237,232,0.15)",
+            }}>
+              Your Photo
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Page tiles */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: B }}>
+        {tiles.map((t) => (
+          <Link key={t.href} href={t.href} className="nav-tile">
+            <span style={{ fontSize: "0.95rem", fontWeight: 700, color: FG }}>{t.label}</span>
+            <span style={{ fontSize: "0.75rem", color: M, fontWeight: 300 }}>{t.sub}</span>
+          </Link>
+        ))}
+      </div>
+
     </div>
   );
 }
