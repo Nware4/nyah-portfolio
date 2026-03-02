@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const P  = "#e4036c";
 const FG = "#f0ede8";
@@ -6,10 +7,10 @@ const M  = "rgba(240,237,232,0.55)";
 const B  = "rgba(240,237,232,0.08)";
 
 const tiles = [
-  { label: "About",       sub: "Background & vision",      href: "/about" },
   { label: "Operations",  sub: "Projects & strategy work", href: "/operations" },
-  { label: "Photography", sub: "Visual storytelling",      href: "/photography" },
-  { label: "Tutoring",    sub: "Communication & writing",  href: "/tutoring" },
+  { label: "Photography", sub: "Portrait photography",      href: "/photography" },
+  { label: "Tutoring",    sub: "Communication coaching",    href: "/tutoring" },
+  { label: "About",       sub: "Background & vision",       href: "/about" },
 ];
 
 export default function Home() {
@@ -30,40 +31,44 @@ export default function Home() {
           border-color: #e4036c;
           background: #0f0f0f;
         }
+        @media (max-width: 680px) {
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-photo { order: -1; max-width: 280px; margin: 0 auto; }
+          .tile-grid { grid-template-columns: 1fr !important; }
+        }
       `}</style>
 
-      {/* Hero */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 340px",
-        gap: "4rem",
-        alignItems: "center",
-        marginBottom: "5rem",
-      }}>
+      <div
+        className="hero-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 320px",
+          gap: "4rem",
+          alignItems: "center",
+          marginBottom: "4rem",
+        }}
+      >
         <div>
           <p style={{
             fontSize: "0.58rem", letterSpacing: "0.24em", textTransform: "uppercase",
             color: P, marginBottom: "1.4rem",
           }}>
-            Bioengineering × Operations × Creative
+            Stanford Bioengineering · Class of 2024
           </p>
           <h1 style={{
-            fontSize: "clamp(3rem, 7vw, 6rem)", fontWeight: 900,
+            fontSize: "clamp(2.8rem, 7vw, 5.5rem)", fontWeight: 900,
             letterSpacing: "-0.03em", lineHeight: 0.92,
             color: FG, marginBottom: "1.75rem",
           }}>
-            Creative<br />
-            <span style={{ color: P }}>Vision.</span><br />
-            Bold<br />
-            Execution.
+            Nyah<br />
+            <span style={{ color: P }}>Ware.</span>
           </h1>
           <p style={{
-            fontSize: "0.88rem", lineHeight: 1.85, color: M,
-            fontWeight: 300, maxWidth: 460, marginBottom: "2.5rem",
+            fontSize: "0.95rem", lineHeight: 1.85, color: M,
+            fontWeight: 300, maxWidth: 420, marginBottom: "2.5rem",
           }}>
-            Stanford Bioengineering graduate. I work at the intersection of science,
-            strategy, and storytelling — through operations consulting, photography,
-            and communication tutoring.
+            Recent Stanford Bioengineering grad working in operations,
+            portrait photography, and communication coaching.
           </p>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/operations" style={{
@@ -83,32 +88,29 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Photo placeholder */}
-        <div style={{
-          aspectRatio: "4/5",
-          background: "#111",
-          border: `1px solid ${B}`,
-          position: "relative",
-          overflow: "hidden",
-        }}>
-          <div style={{
-            position: "absolute", inset: 0,
-            display: "flex", flexDirection: "column",
-            alignItems: "center", justifyContent: "center", gap: "0.75rem",
-          }}>
-            <span style={{ fontSize: "2rem", color: "rgba(240,237,232,0.07)" }}>+</span>
-            <span style={{
-              fontSize: "0.52rem", letterSpacing: "0.22em",
-              textTransform: "uppercase", color: "rgba(240,237,232,0.15)",
-            }}>
-              Your Photo
-            </span>
-          </div>
+        <div
+          className="hero-photo"
+          style={{
+            aspectRatio: "4/5",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            src="/nyah.jpg"
+            alt="Nyah Ware"
+            fill
+            sizes="320px"
+            style={{ objectFit: "cover", objectPosition: "center top" }}
+            priority
+          />
         </div>
       </div>
 
-      {/* Page tiles */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: B }}>
+      <div
+        className="tile-grid"
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: B }}
+      >
         {tiles.map((t) => (
           <Link key={t.href} href={t.href} className="nav-tile">
             <span style={{ fontSize: "0.95rem", fontWeight: 700, color: FG }}>{t.label}</span>
