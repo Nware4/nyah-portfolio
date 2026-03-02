@@ -19,17 +19,17 @@ export default function Home() {
       <style>{`
         .nav-tile { background: #0a0a0a; padding: 1.75rem; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; display: flex; flex-direction: column; gap: 0.4rem; }
         .nav-tile:hover { border-color: #e4036c; background: #0f0f0f; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+        .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(240,237,232,0.08); }
+        .hero-photo { aspect-ratio: 4/5; position: relative; overflow: hidden; }
         @media (max-width: 680px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-photo { order: -1; max-width: 280px; margin: 0 auto; }
+          .hero-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .hero-photo { max-width: 280px; margin: 0 auto; width: 100%; }
           .tile-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
-      <div className="hero-grid" style={{
-        display: "grid", gridTemplateColumns: "1fr 320px",
-        gap: "4rem", alignItems: "center", marginBottom: "4rem",
-      }}>
+      <div className="hero-grid">
         <div>
           <p style={{ fontSize: "0.58rem", letterSpacing: "0.24em", textTransform: "uppercase", color: P, marginBottom: "1.4rem" }}>
             Stanford Bioengineering · December 2025
@@ -49,13 +49,12 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
-        <div className="hero-photo" style={{ aspectRatio: "4/5", position: "relative", overflow: "hidden" }}>
-          <Image src="/nyah.jpg" alt="Nyah Ware" fill sizes="320px" style={{ objectFit: "cover", objectPosition: "center top" }} priority />
+        <div className="hero-photo">
+          <Image src="/nyah.jpg" alt="Nyah Ware" fill sizes="(max-width: 680px) 280px, 320px" style={{ objectFit: "cover", objectPosition: "center top" }} priority />
         </div>
       </div>
 
-      <div className="tile-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: B }}>
+      <div className="tile-grid">
         {tiles.map((t) => (
           <Link key={t.href} href={t.href} className="nav-tile">
             <span style={{ fontSize: "0.95rem", fontWeight: 700, color: FG }}>{t.label}</span>
